@@ -11,7 +11,7 @@ interface SearchAndReplaceProps {
 }
 
 export const SearchAndReplace = (props: SearchAndReplaceProps) => {
-  const [ state, setState ] = useState<string>("");
+  const [ searchPhrase, setSearchPhrase ] = useState<string>("");
   const [ state2, setState2 ] = useState<string>("");
   const [ responseState, setResponseState ] = useState<WikiSearchResult[]>([]);
 
@@ -33,7 +33,7 @@ export const SearchAndReplace = (props: SearchAndReplaceProps) => {
     <>
         <SearchAndReplaceBox>
           <RowWrapper>
-            <InputField value={state} placeholder="Find" onChange={setState}/>
+            <InputField value={searchPhrase} placeholder="Find" onChange={setSearchPhrase}/>
             <Button onClick={handleButtonClick}>search</Button>
           </RowWrapper>
           <RowWrapper>
