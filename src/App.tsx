@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getSearchResultPromise } from './api/APIUtils';
 import './App.css';
+import { ResultList } from './components/ResultList';
 import { SearchAndReplace } from './components/SearchAndReplace';
 import { WikiSearchResult } from './types';
 
@@ -32,6 +33,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <SearchAndReplace onSearch={handleSearch} onReplace={handleReplace} />
+        <ResultList resultList={responseState}/>
       </header>
     </div>
   );

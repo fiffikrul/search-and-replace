@@ -33,18 +33,16 @@ export const SearchAndReplace = (props: SearchAndReplaceProps) => {
 
 
   return (
-    <>
-        <SearchAndReplaceBox>
-          <RowWrapper>
-            <InputField value={searchValue} placeholder="Find" onChange={setSearchValue}/>
-            <Button onClick={() => handleSearch()}>search</Button>
-          </RowWrapper>
-          <RowWrapper>
-            <InputField value={replaceValue} placeholder="Replace" onChange={setReplaceValue}/>
-            <Button className="replace" onClick={() => props.onReplace(replaceValue, false)}><Icon src={replaceOne}/></Button>
-            <Button className="replace" onClick={() => props.onReplace(replaceValue, true)}><Icon src={replaceAll}/></Button>
-          </RowWrapper>
-        </SearchAndReplaceBox>
-    </>
+    <SearchAndReplaceBox>
+      <RowWrapper>
+        <InputField value={searchValue} placeholder="Find" onChange={setSearchValue}/>
+        <Button onClick={() => handleSearch()}>search</Button>
+      </RowWrapper>
+      <RowWrapper>
+        <InputField value={replaceValue} placeholder="Replace" onChange={setReplaceValue}/>
+        <Button className="replace" onClick={() => props.onReplace(replaceValue, false)}><Icon src={replaceOne}/></Button>
+        <Button className="replace" onClick={() => props.onReplace(replaceValue, true)}><Icon src={replaceAll}/></Button>
+      </RowWrapper>
+    </SearchAndReplaceBox>
   );
 }
