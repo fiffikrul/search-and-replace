@@ -1,13 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getSearchResultPromise } from './api/APIUtils';
 import './App.css';
 import { SearchAndReplace } from './components/SearchAndReplace';
+import { WikiSearchResult } from './types';
 
 
-function App() {
+const App = () => {
+  const [ responseState, setResponseState ] = useState<WikiSearchResult[]>([]);
+
+  async function getSearchResult(searchPhrase: string) {
+    const result = await getSearchResultPromise(searchPhrase);
+    if (typeof result !== "undefined" && result.query) {
+      setResponseState(result.query.search);
+    }
+  }
+
+  const handleSearch = (phrase: string) => {
+    getSearchResult(phrase);
+  }
+
+  useEffect(() => {
+    console.log(responseState);
+  }, [responseState])
+
+  const handleReplace = (phrase: string, replaceAll: boolean) => {
+    console.log(phrase);
+    console.log(replaceAll)
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <SearchAndReplace/>
+        <SearchAndReplace onSearch={handleSearch} onReplace={handleReplace} />
       </header>
     </div>
   );

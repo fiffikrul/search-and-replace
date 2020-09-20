@@ -1,45 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import { getSearchResultPromise } from '../api/APIUtils';
+import React, { useEffect, useRef, useState } from 'react';
 import { InputField } from './InputField';
-import { WikiSearchResult } from '../types';
-import { replaceAll, replaceOne, RowWrapper, SearchAndReplaceBox } from './Styles';
-import { Button, Icon } from './Styles';
+import { Button, Icon, replaceAll, replaceOne, RowWrapper, SearchAndReplaceBox } from './Styles';
 
 
 interface SearchAndReplaceProps {
-
+  onReplace: (replacePhrase: string, replaceAll: boolean) => void;
+  onSearch: (searchPhrase: string) => void;
 }
 
 export const SearchAndReplace = (props: SearchAndReplaceProps) => {
-  const [ searchPhrase, setSearchPhrase ] = useState<string>("");
-  const [ state2, setState2 ] = useState<string>("");
-  const [ responseState, setResponseState ] = useState<WikiSearchResult[]>([]);
+  const [ searchValue, setSearchValue ] = useState<string>("");
+  const [ replaceValue, setReplaceValue ] = useState<string>("");
+  const typeTimeout = useRef(0);
 
-  async function getSearchResult(searchPhrase: string) {
-    const result = await getSearchResultPromise(searchPhrase);
-    if (typeof result !== "undefined") {
-      setResponseState(result.query.search);
+  const handleValidatedSearch = (searchPhrase: string) => {
+    if (searchPhrase) {
+      props.onSearch(searchPhrase);
     }
   }
 
-  const handleButtonClick = () => {
-    getSearchResult("liverpool")
+  const handleSearch = () => {
+    clearTimeout(typeTimeout.current)
+    handleValidatedSearch(searchValue);
   }
 
   useEffect(() => {
-    console.log(responseState)
-  }, [ responseState ])
+    typeTimeout.current = setTimeout(() => {
+      handleValidatedSearch(searchValue);
+    }, 3000)
+    return () => clearTimeout(typeTimeout.current)
+  }, [ searchValue ]);
+
+
   return (
     <>
         <SearchAndReplaceBox>
           <RowWrapper>
-            <InputField value={searchPhrase} placeholder="Find" onChange={setSearchPhrase}/>
-            <Button onClick={handleButtonClick}>search</Button>
+            <InputField value={searchValue} placeholder="Find" onChange={setSearchValue}/>
+            <Button onClick={() => handleSearch()}>search</Button>
           </RowWrapper>
           <RowWrapper>
-            <InputField value={state2} placeholder="Replace" onChange={setState2}/>
-            <Button className="replace" onClick={handleButtonClick}><Icon src={replaceOne}/></Button>
-            <Button className="replace" onClick={handleButtonClick}><Icon src={replaceAll}/></Button>
+            <InputField value={replaceValue} placeholder="Replace" onChange={setReplaceValue}/>
+            <Button className="replace" onClick={() => props.onReplace(replaceValue, false)}><Icon src={replaceOne}/></Button>
+            <Button className="replace" onClick={() => props.onReplace(replaceValue, true)}><Icon src={replaceAll}/></Button>
           </RowWrapper>
         </SearchAndReplaceBox>
     </>
