@@ -31,7 +31,7 @@ export const Title = styled.span`
   width: auto;
   font-size: 1rem;
   font-weight: 600;
-  color: ${selectBlue}
+  color: ${selectBlue};
 
 `;
 
