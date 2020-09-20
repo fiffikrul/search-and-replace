@@ -49,7 +49,7 @@ export const SearchAndList = () => {
 
   async function getSearchResult(searchPhrase: string) {
     const result = await getSearchResultPromise(searchPhrase);
-    if (typeof result !== "undefined" && result.query) {
+    if (result && result.query) {
       setParsedResponse(parseResponse(result.query.search));
     }
   }
