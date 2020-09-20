@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { backgroundGrey } from './Colors';
+import { backgroundGrey, highlightedTextYellow, inputGrey, selectBlue, textGrey } from './Colors';
 
 export const ListBox = styled.div`
   display: flex;
@@ -10,17 +10,38 @@ export const ListBox = styled.div`
   background: ${backgroundGrey};
 
   div:not(:last-child) {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
   }
 `;
 
-export const ListItem = styled.div`
+export const ListRow = styled.div`
   display: flex;
-  height: 100px;
+  flex-flow: column;
+  height: auto;
   width: auto;
-  padding-left: 0.5rem;
+  background: ${inputGrey};
+  border-radius: 0.25rem;
+`;
 
-  *:not(:last-child) {
-    margin-right: 0.2rem;
+export const Title = styled.span`
+  height: auto;
+  width: auto;
+  font-size: 1rem;
+  font-weight: 600;
+  color: ${selectBlue}
+
+`;
+
+export const Content = styled.span`
+  height: auto;
+  width: auto;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: ${textGrey};
+
+  & > .searchmatch {
+    padding: 0 0.1rem;
+    color: ${backgroundGrey};
+    background: ${highlightedTextYellow};
   }
 `;

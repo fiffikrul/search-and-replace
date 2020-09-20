@@ -1,4 +1,4 @@
-export * from "./StyledSearchAndReplace";
+export * from "./StyledFindAndReplace";
 export * from "./StyledInputField";
 export * from "./StyledButton";
 export * from "./StyledList";

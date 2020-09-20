@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getSearchResultPromise } from './api/APIUtils';
 import './App.css';
 import { ResultList } from './components/ResultList';
-import { SearchAndReplace } from './components/SearchAndReplace';
+import { FindAndReplace } from './components/FindAndReplace';
 import { WikiSearchResult } from './types';
 
 
@@ -32,7 +32,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <SearchAndReplace onSearch={handleSearch} onReplace={handleReplace} />
+        <FindAndReplace onSearch={handleSearch} onReplace={handleReplace} />
         <ResultList resultList={responseState}/>
       </header>
     </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { WikiSearchResult } from '../types';
-import { ListBox, ListItem } from './Styles';
+import { ListItem } from './ListItem';
+import { ListBox } from './Styles';
 
 
 interface ResultListProps {
@@ -11,10 +12,10 @@ export const ResultList = (props: ResultListProps) => {
   const [ searchValue, setSearchValue ] = useState<string>("");
 
   const getList = () => {
-    const JSXResults = props.resultList.map((result: WikiSearchResult) => {
-        return (<ListItem>{result.snippet}</ListItem>)
+    const JSXResults = props.resultList.map((result: WikiSearchResult, key: number) => {
+        return (<ListItem key={key} title={result.title} content={result.snippet} />)
     })
-    return JSXResults[0];
+    return JSXResults;
   }
 
   return (
