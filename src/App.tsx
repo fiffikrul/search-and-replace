@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import { SearchAndReplace } from './components/SearchAndReplace';
+import { SearchAndList } from './components/SearchAndList';
 
+const App = () => {
 
-function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <SearchAndReplace/>
+        <SearchAndList/>
       </header>
     </div>
   );

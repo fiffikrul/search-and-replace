@@ -8,6 +8,11 @@ export interface WikiSearchResult {
     wordcount: number;
 }
 
+export interface WikiSearchParsed {
+    title: string;
+    content: JSX.Element | JSX.Element[];
+}
+
 interface WikiQuery {
     search: WikiSearchResult[]
 }
@@ -16,4 +21,9 @@ export interface WikiResponse {
     batchcomplete: string;
     continue: any;
     query: WikiQuery;
+}
+
+export interface ParsedItem {
+    title: string;
+    content: JSX.Element | JSX.Element[] | string;
 }
