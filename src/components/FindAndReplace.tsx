@@ -27,7 +27,7 @@ export const FindAndReplace = (props: SearchAndReplaceProps) => {
   useEffect(() => {
     typeTimeout.current = setTimeout(() => {
       handleValidatedSearch(searchValue);
-    }, 3000)
+    }, 2000)
     return () => clearTimeout(typeTimeout.current)
   }, [ searchValue ]);
 

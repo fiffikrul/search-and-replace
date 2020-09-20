@@ -5,11 +5,12 @@ export const ListBox = styled.div`
   display: flex;
   flex-flow: column;
   height: 80%;
-  width: 500px;
+  width: 100%;
+  overflow-y: auto;
   padding: 0.5rem;
   background: ${backgroundGrey};
 
-  div:not(:last-child) {
+  & > div {
     margin-bottom: 0.25rem;
   }
 `;
@@ -19,6 +20,8 @@ export const ListRow = styled.div`
   flex-flow: column;
   height: auto;
   width: auto;
+  padding: 0.5rem;
+  padding-top: 0.25rem;
   background: ${inputGrey};
   border-radius: 0.25rem;
 `;
